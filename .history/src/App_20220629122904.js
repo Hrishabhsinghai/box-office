@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import Home from './pages/Home';
+import Navs from './components/Navs';
 import Starred from './pages/Starred';
 
 function App() {
