@@ -11,25 +11,17 @@ const Show = () => {
   const [error, seterror] = useState(null);
 
   useEffect(() => {
-    let isMounted = true;
-
     apiGet(`/shows/${id}?embed[]=seasons&embed[]=cast`)
       .then(results => {
-        if (isMounted) {
+        setTimeout(() => {
           setShow(results);
           setIsLoading(false);
-        }
+        }, 2000);
       })
       .catch(err => {
-        if (isMounted) {
-          seterror(err.message);
-          setIsLoading(false);
-        }
+        seterror(err.message);
+        setIsLoading(false);
       });
-
-    return () => {
-      isMounted = false;
-    };
   }, [id]);
 
   console.log('show', show);
