@@ -9,7 +9,7 @@ const Home = () => {
   const isShowsSearch = searchOption === 'shows';
 
   const onSearch = () => {
-    apiGet(`/search/${searchOption}?q=${input}`).then(result => {
+    apiGet(`/search/shows?q=${input}`).then(result => {
       setResults(result);
     });
   };
@@ -35,11 +35,13 @@ const Home = () => {
     }
 
     if (results && results.length > 0) {
-      return results[0].show
-        ? results.map(item => <div key={item.show.id}>{item.show.name}</div>)
-        : results.map(item => (
-            <div key={item.person.id}>{item.person.name}</div>
-          ));
+      return (
+        <div>
+          {results.map(item => (
+            <div key={item.show.id}>{item.show.name}</div>
+          ))}
+        </div>
+      );
     }
 
     return null;
