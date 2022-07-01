@@ -26,10 +26,8 @@ const initialState = {
 const Show = () => {
   const { id } = useParams();
 
-  const [{ show, isLoading, error }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(reducer, initialState);
+  console.log('state', state);
 
   useEffect(() => {
     let isMounted = true;
@@ -51,14 +49,15 @@ const Show = () => {
     };
   }, [id]);
 
-  console.log('show', show);
+  // console.log('show', show);
+  // console.log('isLoading', isLoading);
 
-  if (isLoading) {
-    return <div>Data is being loaded</div>;
-  }
-  if (error) {
-    return <div>Error occured: {error}</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Data is being loaded</div>;
+  // }
+  // if (error) {
+  //   return <div>Error occured: {error}</div>;
+  // }
 
   return <div>this is show page</div>;
 };
