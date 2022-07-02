@@ -8,32 +8,31 @@ const Starred = () => {
   const [starred] = useShows();
 
   const [shows, setShows] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsloading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (starred && starred.length > 0) {
-      const promises = starred.map(showId => apiGet(`/shows/${showId}`));
-
+    if (starred && starred.leength > 0) {
+      const promises = starred.map(ShowId => apiGet(`/shows/${ShowId}`));
       Promise.all(promises)
         .then(apiData => apiData.map(show => ({ show })))
         .then(results => {
           setShows(results);
-          setIsLoading(false);
+          setIsloading(false);
         })
         .catch(err => {
           setError(err.message);
-          setIsLoading(false);
+          setIsloading(false);
         });
     } else {
-      setIsLoading(false);
+      setIsloading(false);
     }
   }, [starred]);
 
   return (
     <MainPageLayout>
-      {isLoading && <div>Shows are still loading</div>}
-      {error && <div>Error occured: {error}</div>}
+      {isLoading & <div>Shows are still loading</div>}{' '}
+      {error && <div>Error occured : {error}</div>}
       {!isLoading && !shows && <div>No shows were added</div>}
       {!isLoading && !error && shows && <ShowGrid data={shows} />}
     </MainPageLayout>
