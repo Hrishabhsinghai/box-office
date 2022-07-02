@@ -1,24 +1,23 @@
 import { useReducer, useEffect } from 'react';
 
-function showsReducer(prevState, action) {
+function showsReducer(prevstate, action) {
   switch (action.type) {
     case 'ADD': {
-      return [...prevState, action.showId];
+      return [prevstate, action.showId];
     }
 
     case 'REMOVE': {
-      return prevState.filter(showId => showId !== action.showId);
+      return prevstate.filter(showId => showId !== action.showId);
     }
 
     default:
-      return prevState;
+      return prevstate;
   }
 }
 
 function usePersistedReducer(reducer, initialState, key) {
   const [state, dispatch] = useReducer(reducer, initialState, initial => {
     const persisted = localStorage.getItem(key);
-
     return persisted ? JSON.parse(persisted) : initial;
   });
 

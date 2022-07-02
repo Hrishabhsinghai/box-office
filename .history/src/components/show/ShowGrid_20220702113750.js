@@ -6,7 +6,7 @@ import IMAGE_NOT_FOUND from '../../images/not-found.png.png';
 import { useShows } from '../../misc/custom-hooks';
 
 const ShowGrid = ({ data }) => {
-  const [starredShows, dispatchStarred] = useShows();
+  const [starred, dispatchStarred] = useShows();
 
   return (
     <FlexGrid>
@@ -29,7 +29,6 @@ const ShowGrid = ({ data }) => {
             image={show.image ? show.image.medium : IMAGE_NOT_FOUND}
             summary={show.summary}
             onStarClick={onStarClick}
-            isStarred={isStarred}
           />
         );
       })}
