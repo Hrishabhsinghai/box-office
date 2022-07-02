@@ -1,12 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
-import { apiGet } from '../misc/config';
-import ShowMainData from '../components/show/ShowMainData';
+import Cast from '../components/show/Cast';
 import Details from '../components/show/Details';
 import Seasons from '../components/show/Seasons';
-import Cast from '../components/show/Cast';
-import { ShowPageWrapper, InfoBlock } from './Show.Styled';
+import ShowMainData from '../components/show/ShowMainData';
+import { apiGet } from '../misc/config';
 
 const reducer = (prevState, action) => {
   switch (action.type) {
@@ -57,43 +55,39 @@ const Show = () => {
     };
   }, [id]);
 
+  console.log('show', show);
+
   if (isLoading) {
     return <div>Data is being loaded</div>;
   }
-
   if (error) {
     return <div>Error occured: {error}</div>;
   }
 
   return (
-    <ShowPageWrapper>
+    <div>
       <ShowMainData
         image={show.image}
         name={show.name}
         rating={show.rating}
         summary={show.summary}
-        tags={show.genres}
+        tags={show.generes}
       />
-
-      <InfoBlock>
+      <div>
         <h2>Details</h2>
-        <Details
-          status={show.status}
-          network={show.network}
-          premiered={show.premiered}
-        />
-      </InfoBlock>
+        <Details />
+      </div>
 
-      <InfoBlock>
+      <div>
         <h2>Seasons</h2>
-        <Seasons seasons={show._embedded.seasons} />
-      </InfoBlock>
+        <Seasons />
+      </div>
 
-      <InfoBlock>
+      <div>
         <h2>Cast</h2>
-        <Cast cast={show._embedded.cast} />
-      </InfoBlock>
-    </ShowPageWrapper>
+        <Cast />
+      </div>
+    </div>
   );
 };
 

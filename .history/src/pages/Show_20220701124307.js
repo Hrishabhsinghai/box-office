@@ -1,12 +1,11 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
-import { apiGet } from '../misc/config';
-import ShowMainData from '../components/show/ShowMainData';
+import Cast from '../components/show/Cast';
 import Details from '../components/show/Details';
 import Seasons from '../components/show/Seasons';
-import Cast from '../components/show/Cast';
-import { ShowPageWrapper, InfoBlock } from './Show.Styled';
+import ShowMainData from '../components/show/ShowMainData';
+import { apiGet } from '../misc/config';
+import { InfoBlock, ShowPageWrapper } from './ShowStyled';
 
 const reducer = (prevState, action) => {
   switch (action.type) {
@@ -60,7 +59,6 @@ const Show = () => {
   if (isLoading) {
     return <div>Data is being loaded</div>;
   }
-
   if (error) {
     return <div>Error occured: {error}</div>;
   }
@@ -72,9 +70,8 @@ const Show = () => {
         name={show.name}
         rating={show.rating}
         summary={show.summary}
-        tags={show.genres}
+        tags={show.generes}
       />
-
       <InfoBlock>
         <h2>Details</h2>
         <Details
